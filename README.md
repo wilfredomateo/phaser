@@ -1,2 +1,0 @@
-# phaser
-Phaser game development
