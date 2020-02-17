@@ -100,6 +100,18 @@ this.load.image('name', 'link');
 
 //////////////////////////////////////////////////
 
+//Load Sounds
+function preload() {
+	this.load.audio('theme', 'assets/music/theme.wav');
+  }
+  
+  function create() {
+	gameState.music = this.sound.add('theme');
+	gameState.music.play();
+  }
+
+//////////////////////////////////////////////////
+
 //Add Sprite
 this.add.sprite(x,y,'name');
 
