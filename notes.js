@@ -56,6 +56,17 @@ gameState.rect1.on('pointerup', function() {
 
 //////////////////////////////////////////////////
 
+//Enable BlendModes
+shape.on('pointerover', function() {
+	this.setBlendMode(Phaser.BlendModes.SCREEN)
+  });
+   
+  shape.on('pointerout', function() {
+	this.setBlendMode(Phaser.BlendModes.NORMAL)
+  });
+
+//////////////////////////////////////////////////
+
 //Enable a Keypress Handler
 gameState.circle = this.add.circle(30, 30, 10, 0xFF0000);
   this.input.keyboard.on('keyboard-W', function() {
@@ -140,3 +151,4 @@ or
 gameState.rectangle = this.add.rectangle(40, 60, 90, 10, 0x00ff00);
 
 //////////////////////////////////////////////////
+

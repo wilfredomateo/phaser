@@ -12,7 +12,7 @@
 		type: Phaser.AUTO,
 		width: 1200,
 		height: 550,
-		backgroundColor: "#CCB490",
+		backgroundColor: "#5D5A5B",
 		scene: {
 		create,
 		preload,
@@ -25,13 +25,43 @@
 	const gameState = {}
   
   	function preload() {
+		//Images
 		this.load.image('jordan', '/assets/sprites/JordanRetro5_mini.png');
+		this.load.image('play_button', '/assets/sprites/play_black.png');
+		this.load.image('stop_button', '/assets/sprites/stop_black.png');
+		
+		//Music
+		this.load.audio('theme_music', '/assets/music/bob_james_westchester_lady.mp3');
   
  	}
   
   	function create() {
+		//Add Jordan Shoe
 		gameState.jordan = this.add.sprite(150, 100, 'jordan');
 		gameState.cursors = this.input.keyboard.createCursorKeys();
+
+		//Add Theme Music
+		gameState.theme_music = this.sound.add('theme_music');
+
+		//Add Music Control Buttons
+		gameState.play_button = this.add.sprite(25, 25, 'play_button');
+		gameState.stop_button = this.add.sprite(75, 25, 'stop_button');
+
+		//Make Buttons Interactive
+		gameState.play_button.setInteractive();
+		gameState.stop_button.setInteractive();
+
+		//Play Button Logic
+		gameState.play_button.on('pointerup', function() {
+
+			gameState.theme_music.play()
+		});
+
+		//Stop Button Logic
+		gameState.stop_button.on('pointerup', function() {
+
+			gameState.theme_music.stop()
+		});
   
   	}
 
