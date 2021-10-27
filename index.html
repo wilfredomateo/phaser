@@ -8,24 +8,26 @@
 
 <script>
   
-  	var config = {
+  	const config = {
 		type: Phaser.AUTO,
 		width: 1200,
 		height: 550,
 		backgroundColor: "#5D5A5B",
 		scene: {
-        preload: preload,
-        create: create,
-        update: update
-    	}
+		create,
+		preload,
+		update
+	  	}
   	};
   
-  	var game = new Phaser.Game(config);
+  	const game = new Phaser.Game(config);
+
+	const gameState = {}
   
   	function preload() {
 		
 		//Images
-		this.load.image('jordan_5', '/assets/sprites/JordanRetro5_mini.png');
+		this.load.image('jordan', '/assets/sprites/JordanRetro5_mini.png');
 		this.load.image('play_button', '/assets/sprites/play_black.png');
 		this.load.image('stop_button', '/assets/sprites/stop_black.png');
 		
@@ -35,50 +37,47 @@
  	}
   
   	function create() {
-		//Add Player
-		player = this.physics.add.sprite(150, 100, 'jordan_5');
-		//player.setCollideWorldBounds(true);
-		
-		cursors = this.input.keyboard.createCursorKeys();
+		//Add Jordan Shoe
+		gameState.jordan = this.add.sprite(150, 100, 'jordan');
+		gameState.cursors = this.input.keyboard.createCursorKeys();
 
 		//Add Theme Music
-		theme_music = this.sound.add('theme_music');
+		gameState.theme_music = this.sound.add('theme_music');
 
 		//Add Music Control Buttons
-		play_button = this.add.sprite(25, 25, 'play_button');
-		stop_button = this.add.sprite(75, 25, 'stop_button');
+		gameState.play_button = this.add.sprite(25, 25, 'play_button');
+		gameState.stop_button = this.add.sprite(75, 25, 'stop_button');
 
 		//Make Buttons Interactive
-		play_button.setInteractive();
-		stop_button.setInteractive();
+		gameState.play_button.setInteractive();
+		gameState.stop_button.setInteractive();
 
 		//Play Button Logic
-		play_button.on('pointerup', function() {
+		gameState.play_button.on('pointerup', function() {
 
-			theme_music.play()
+			gameState.theme_music.play()
 		});
 
 		//Stop Button Logic
-		stop_button.on('pointerup', function() {
+		gameState.stop_button.on('pointerup', function() {
 
-			theme_music.stop()
+			gameState.theme_music.stop()
 		});
   
   	}
-	
-	//Player Logic
+
 	function update() {
-		if (cursors.right.isDown) {
-			player.x += 5;
+		if (gameState.cursors.right.isDown) {
+			gameState.jordan.x += 5;
 		} 
-		if (cursors.left.isDown) {
-			player.x -= 5;
+		if (gameState.cursors.left.isDown) {
+			gameState.jordan.x -= 5;
 		}
-		if (cursors.down.isDown) {
-			player.y += 5;
+		if (gameState.cursors.down.isDown) {
+			gameState.jordan.y += 5;
 		}
-		if (cursors.up.isDown) {
-			player.y -= 5;
+		if (gameState.cursors.up.isDown) {
+			gameState.jordan.y -= 5;
 		}
 
 	}
