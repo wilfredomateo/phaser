@@ -27,7 +27,7 @@
   	function preload() {
 		
 		//Images
-		this.load.image('jordan', '/assets/sprites/JordanRetro5_mini.png');
+		this.load.image('jordan_5', '/assets/sprites/JordanRetro5_mini.png');
 		this.load.image('play_button', '/assets/sprites/play_black.png');
 		this.load.image('stop_button', '/assets/sprites/stop_black.png');
 		
@@ -37,8 +37,10 @@
  	}
   
   	function create() {
-		//Add Jordan Shoe
-		gameState.jordan = this.add.sprite(150, 100, 'jordan');
+		//Add Player
+		gameState.player = this.add.sprite(150, 100, 'jordan_5');
+		gameState.player.setCollideWorldBounds(true);
+		
 		gameState.cursors = this.input.keyboard.createCursorKeys();
 
 		//Add Theme Music
@@ -65,19 +67,20 @@
 		});
   
   	}
-
+	
+	//Player Logic
 	function update() {
 		if (gameState.cursors.right.isDown) {
-			gameState.jordan.x += 5;
+			gameState.player.x += 5;
 		} 
 		if (gameState.cursors.left.isDown) {
-			gameState.jordan.x -= 5;
+			gameState.player.x -= 5;
 		}
 		if (gameState.cursors.down.isDown) {
-			gameState.jordan.y += 5;
+			gameState.player.y += 5;
 		}
 		if (gameState.cursors.up.isDown) {
-			gameState.jordan.y -= 5;
+			gameState.player.y -= 5;
 		}
 
 	}
