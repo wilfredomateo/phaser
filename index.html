@@ -38,8 +38,8 @@
   
   	function create() {
 		//Add Player
-		gameState.player = this.add.sprite(150, 100, 'jordan_5');
-		//gameState.player.setCollideWorldBounds(true);
+		gameState.player = this.physics.add.sprite(150, 100, 'jordan_5');
+		gameState.player.setCollideWorldBounds(true);
 		
 		gameState.cursors = this.input.keyboard.createCursorKeys();
 
