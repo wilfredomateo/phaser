@@ -38,7 +38,8 @@
 		this.load.image('jordan', '/assets/sprites/JordanRetro5_mini.png');
 		this.load.image('play_button', '/assets/sprites/play_black.png');
 		this.load.image('stop_button', '/assets/sprites/stop_black.png');
-		
+		this.load.image('platform', '/assets/sprites/platform.png');
+
 		//Music
 		this.load.audio('theme_music', 'assets/music/bob_james_westchester_lady.mp3');
   
@@ -47,6 +48,16 @@
   	function create() {
 		//Add Jordan Shoe
 		gameState.jordan = this.physics.add.sprite(150, 100, 'jordan');
+		gameState.jordan.setCollideWorldBounds(true)
+
+		//Add Platforms
+		const platforms = this.physics.add.staticGroup();
+		platforms.create(320, 350, 'platform');
+
+		//Add Collider Object
+		this.physics.add.collider(jordan, platforms);
+
+		//Add Cursors
 		gameState.cursors = this.input.keyboard.createCursorKeys();
 
 		//Add Theme Music
