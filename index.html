@@ -86,18 +86,13 @@
   	}
 
 	function update() {
-		if (gameState.cursors.right.isDown) {
-			gameState.jordan.x += 5;
-		} 
-		if (gameState.cursors.left.isDown) {
-			gameState.jordan.x -= 5;
-		}
-		if (gameState.cursors.down.isDown) {
-			gameState.jordan.y += 5;
-		}
-		if (gameState.cursors.up.isDown) {
-			gameState.jordan.y -= 5;
-		}
+		if(gameState.cursors.left.isDown) {
+  			gameState.jordan.setVelocityX(-160);
+		} else if (gameState.cursors.right.isDown) {
+ 			gameState.jordan.setVelocityX(160);
+		} else {
+    		gameState.jordan.setVelocityX(0);
+  		}
 
 	}
 
