@@ -24,42 +24,42 @@ function preload() {
 const gameState = {};
 
 function create() {
-		//Add Jordan Shoe
-		gameState.jordan = this.physics.add.sprite(150, 100, 'jordan');
-		gameState.jordan.setCollideWorldBounds(true)
+	//Add Jordan Shoe
+	gameState.jordan = this.physics.add.sprite(150, 100, 'jordan').setScale(.5);
+	gameState.jordan.setCollideWorldBounds(true)
 
-		//Add Platforms
-		const platforms = this.physics.add.staticGroup();
-		platforms.create(225, 510, 'platform');
+	//Add Platforms
+	const platforms = this.physics.add.staticGroup();
+	platforms.create(225, 510, 'platform');
 
-		//Add Collider Object
-		this.physics.add.collider(jordan, platforms);
+	//Add Collider Object
+	this.physics.add.collider(gameState.jordan, platforms);
 
-		//Add Cursors
-		gameState.cursors = this.input.keyboard.createCursorKeys();
+	//Add Cursors
+	gameState.cursors = this.input.keyboard.createCursorKeys();
 
-		//Add Theme Music
-		gameState.theme_music = this.sound.add('theme_music');
+	//Add Theme Music
+	gameState.theme_music = this.sound.add('theme_music');
 
-		//Add Music Control Buttons
-		gameState.play_button = this.add.sprite(25, 25, 'play_button');
-		gameState.stop_button = this.add.sprite(75, 25, 'stop_button');
+	//Add Music Control Buttons
+	gameState.play_button = this.add.sprite(25, 25, 'play_button');
+	gameState.stop_button = this.add.sprite(75, 25, 'stop_button');
 
-		//Make Buttons Interactive
-		gameState.play_button.setInteractive();
-		gameState.stop_button.setInteractive();
+	//Make Buttons Interactive
+	gameState.play_button.setInteractive();
+	gameState.stop_button.setInteractive();
 
-		//Play Button Logic
-		gameState.play_button.on('pointerup', function() {
+	//Play Button Logic
+	gameState.play_button.on('pointerup', function() {
 
-			gameState.theme_music.play()
-		});
+		gameState.theme_music.play()
+	});
 
-		//Stop Button Logic
-		gameState.stop_button.on('pointerup', function() {
+	//Stop Button Logic
+	gameState.stop_button.on('pointerup', function() {
 
-			gameState.theme_music.stop()
-		});
+		gameState.theme_music.stop()
+	});
   
 }
 
@@ -91,9 +91,9 @@ const config = {
 		create,
 		update
 	}
-}
+};
   
-const game = new Phaser.Game(config)
+const game = new Phaser.Game(config);
 
 </script>
 
