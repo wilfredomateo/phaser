@@ -7,45 +7,23 @@
 
 
 <script>
-  
-  	const config = {
-		type: Phaser.AUTO,
-		width: 1200,
-		height: 550,
-		backgroundColor: "#5D5A5B",
-		scene: {
-		create,
-		preload,
-		update
-	  	},
-
-		physics: {
-    	default: 'arcade',
-    	arcade: {
-      		gravity: { y: 300 },
-      		debug: true
-    		}
-  		}
-  	};
-  
-  	const game = new Phaser.Game(config);
-
-	const gameState = {}
-  
-  	function preload() {
+ 
+function preload() {
 		
-		//Images
-		this.load.image('jordan', '/assets/sprites/JordanRetro5_mini.png');
-		this.load.image('play_button', '/assets/sprites/play_black.png');
-		this.load.image('stop_button', '/assets/sprites/stop_black.png');
-		this.load.image('platform', '/assets/sprites/platform.png');
+	//Images
+	this.load.image('jordan', '/assets/sprites/JordanRetro5_mini.png');
+	this.load.image('play_button', '/assets/sprites/play_black.png');
+	this.load.image('stop_button', '/assets/sprites/stop_black.png');
+	this.load.image('platform', '/assets/sprites/platform.png');
 
-		//Music
-		this.load.audio('theme_music', 'assets/music/bob_james_westchester_lady.mp3');
+	//Music
+	this.load.audio('theme_music', 'assets/music/bob_james_westchester_lady.mp3');
   
  	}
-  
-  	function create() {
+
+const gameState = {};
+
+function create() {
 		//Add Jordan Shoe
 		gameState.jordan = this.physics.add.sprite(150, 100, 'jordan');
 		gameState.jordan.setCollideWorldBounds(true)
@@ -83,18 +61,39 @@
 			gameState.theme_music.stop()
 		});
   
+}
+
+function update() {
+	if(gameState.cursors.left.isDown) {
+  		gameState.jordan.setVelocityX(-160);
+	} else if (gameState.cursors.right.isDown) {
+ 		gameState.jordan.setVelocityX(160);
+	} else {
+    	gameState.jordan.setVelocityX(0);
   	}
 
-	function update() {
-		if(gameState.cursors.left.isDown) {
-  			gameState.jordan.setVelocityX(-160);
-		} else if (gameState.cursors.right.isDown) {
- 			gameState.jordan.setVelocityX(160);
-		} else {
-    		gameState.jordan.setVelocityX(0);
-  		}
+}
 
+const config = {
+	type: Phaser.AUTO,
+	width: 450,
+	height: 500,
+	backgroundColor: "#5D5A5B",
+	physics: {
+    	default: 'arcade',
+    	arcade: {
+      		gravity: { y: 200 },
+      		enableBody: true,
+    		}
+  		},
+	scene: {
+		preload,
+		create,
+		update
 	}
+}
+  
+const game = new Phaser.Game(config)
 
 </script>
 
